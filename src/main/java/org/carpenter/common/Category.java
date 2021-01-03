@@ -1,5 +1,6 @@
 package org.carpenter.common;
 
+import lombok.Getter;
 import org.carpenter.goal.GoalRoot;
 
 import javax.persistence.Entity;
@@ -7,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.Set;
 
+@Getter
 @Entity
 public class Category {
 

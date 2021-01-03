@@ -1,5 +1,6 @@
 package org.carpenter.board;
 
+import lombok.Getter;
 import org.carpenter.user.User;
 
 import javax.persistence.Entity;
@@ -7,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 public class Comment {
 

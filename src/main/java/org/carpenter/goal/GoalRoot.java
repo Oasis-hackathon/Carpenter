@@ -1,15 +1,14 @@
 package org.carpenter.goal;
 
+import lombok.Getter;
 import org.carpenter.common.Category;
 import org.carpenter.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
 
+@Getter
 @Entity
 public class GoalRoot {
 
@@ -27,6 +26,6 @@ public class GoalRoot {
     @ManyToOne
     private Category category;
 
-    @OneToMany(mappedBy = "goalRoot")
+    @OneToMany(mappedBy = "goalRoot", cascade = CascadeType.PERSIST)
     private Set<GoalNode> goalNodeSet;
 }

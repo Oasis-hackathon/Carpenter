@@ -1,14 +1,13 @@
 package org.carpenter.board;
 
+import lombok.Getter;
 import org.carpenter.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@Getter
 @Entity
 public class Board {
 
@@ -23,6 +22,6 @@ public class Board {
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Comment> commentSet;
 }
