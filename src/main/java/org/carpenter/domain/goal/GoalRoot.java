@@ -1,8 +1,8 @@
-package org.carpenter.goal;
+package org.carpenter.domain.goal;
 
 import lombok.Getter;
-import org.carpenter.common.Category;
-import org.carpenter.user.Carpenter;
+import org.carpenter.domain.common.Category;
+import org.carpenter.domain.user.Carpenter;
 
 import javax.persistence.*;
 import java.time.LocalDate;

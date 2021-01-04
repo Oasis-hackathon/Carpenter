@@ -1,7 +1,7 @@
-package org.carpenter.board;
+package org.carpenter.domain.board;
 
 import lombok.Getter;
-import org.carpenter.user.Carpenter;
+import org.carpenter.domain.user.Carpenter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,10 +1,10 @@
-package org.carpenter.user.dto;
+package org.carpenter.domain.user.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.carpenter.user.Carpenter;
+import org.carpenter.domain.user.Carpenter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Set;
@@ -12,7 +12,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CarpenterJoinDto {
+public class JoinDto {
     String email;
     String password;
     String username;
@@ -20,7 +20,7 @@ public class CarpenterJoinDto {
     Set<String> role;
 
     @Builder
-    public CarpenterJoinDto(String email, String password, String username, String nickname) {
+    public JoinDto(String email, String password, String username, String nickname) {
         this.email = email;
         this.password = password;
         this.username = username;

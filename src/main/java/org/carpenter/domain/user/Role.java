@@ -1,9 +1,9 @@
-package org.carpenter.user;
+package org.carpenter.domain.user;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.carpenter.common.RoleName;
+import org.carpenter.domain.common.RoleName;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;

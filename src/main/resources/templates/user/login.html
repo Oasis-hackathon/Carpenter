@@ -15,9 +15,9 @@
             <label>Password</label>
             <input type="password" name="password" placeholder="비밀번호를 입력하세요:)">
         </div>
-        <input type="submit" value="로그인">
-        <button type="button" formaction="/join" method="get" th:text="회원가입"></button>
     </div>
+    <input type="submit" value="로그인">
+    <button th:formaction="@{/join}" th:formmethod="get" th:text="회원가입"></button>
 </form>
 <div>
     <img src="/image/backgroundTree.jpeg" >

@@ -1,12 +1,11 @@
-package org.carpenter.user;
+package org.carpenter.domain.user;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.carpenter.board.Board;
-import org.carpenter.board.Comment;
-import org.carpenter.common.RoleName;
-import org.carpenter.goal.GoalRoot;
+import lombok.*;
+import org.carpenter.domain.board.Board;
+import org.carpenter.domain.board.Comment;
+import org.carpenter.domain.common.RoleName;
+import org.carpenter.domain.goal.GoalRoot;
+import org.carpenter.domain.user.dto.UpdateDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,7 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "user")
 @Entity
 public class Carpenter implements UserDetails {
@@ -33,7 +32,6 @@ public class Carpenter implements UserDetails {
     private String nickname;
 
     private LocalDateTime createdTime;
-
     private LocalDateTime updatedTime;
 
     @OneToMany(mappedBy = "carpenter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
@@ -42,10 +40,10 @@ public class Carpenter implements UserDetails {
     @OneToMany(mappedBy = "carpenter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<GoalRoot> rootSet;
 
-    @OneToMany(mappedBy = "carpenter")
+    @OneToMany(mappedBy = "carpenter", cascade = CascadeType.PERSIST)
     private Set<Board> boardSet;
 
-    @OneToMany(mappedBy = "carpenter")
+    @OneToMany(mappedBy = "carpenter", cascade = CascadeType.PERSIST)
     private Set<Comment> commentSet;
 
     @Builder
@@ -54,12 +52,13 @@ public class Carpenter implements UserDetails {
         this.password = password;
         this.username = username;
         this.nickname = nickname;
+        this.createdTime = LocalDateTime.now();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> result = new HashSet<>();
-        Role role = Role.builder().roleName(RoleName.ADMIN).build();
+        Role role = Role.builder().roleName(RoleName.CUSTOMER).build();
         result.add(role);
         return result;
     }
@@ -92,5 +91,13 @@ public class Carpenter implements UserDetails {
     @Override
     public boolean isEnabled() {
         return false;
+    }
+
+    public void update(UpdateDto dto) {
+        if (!dto.getPassword().isEmpty()) {
+            this.password = dto.getPassword();
+        }
+        this.nickname = dto.getNickname();
+        this.updatedTime = LocalDateTime.now();
     }
 }

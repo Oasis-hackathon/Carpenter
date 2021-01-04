@@ -7,9 +7,11 @@
 <body>
 반가워요
 <h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
-<a th:href="@{/login}">로그인</a>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="로그아웃">
 </form>
+<a th:href="@{/user/mypage}" th:text="마이페이지"></a>
+<a th:href="@{/goals}">목표 리스트</a>
+<a th:href="@{/goals/newgoal}">새 목표 만들기</a>
 </body>
 </html>

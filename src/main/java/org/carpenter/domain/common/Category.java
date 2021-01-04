@@ -1,7 +1,7 @@
-package org.carpenter.common;
+package org.carpenter.domain.common;
 
 import lombok.Getter;
-import org.carpenter.goal.GoalRoot;
+import org.carpenter.domain.goal.GoalRoot;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

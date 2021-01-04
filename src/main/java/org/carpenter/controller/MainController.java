@@ -1,4 +1,4 @@
-package org.carpenter.common;
+package org.carpenter.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

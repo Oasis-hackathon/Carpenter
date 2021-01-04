@@ -1,4 +1,4 @@
-package org.carpenter.goal;
+package org.carpenter.domain.goal;
 
 import lombok.Getter;
 

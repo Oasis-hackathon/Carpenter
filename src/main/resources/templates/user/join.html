@@ -25,12 +25,14 @@
         </div>
         <div>
             <label>Role</label>
-            <select th:each="roleName : ${roleNameList}" name="role">
-                <option value="${roleName}" th:text="${roleName}"></option>
+            <select name="role">
+                <th:block th:each="roleName : ${roleNameList}">
+                    <option value="${roleName}" th:text="${roleName}"></option>
+                </th:block>
             </select>
         </div>
         <input type="submit" value="가입하기">
-        <button type="button" formaction="/index" formmethod="get" th:text="돌아가기"></button>
+        <button formaction="/index" formmethod="get" th:text="돌아가기"></button>
     </form>
 </div>
 </body>

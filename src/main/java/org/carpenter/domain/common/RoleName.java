@@ -1,4 +1,4 @@
-package org.carpenter.common;
+package org.carpenter.domain.common;
 
 
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package org.carpenter.config;
 
-import org.carpenter.user.CarpenterService;
+import org.carpenter.domain.user.CarpenterService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
