@@ -6,7 +6,8 @@ import org.carpenter.domain.goal.GoalRoot;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -18,5 +19,5 @@ public class Category {
     private Boolean published;
 
     @OneToMany(mappedBy = "category")
-    private Set<GoalRoot> rootSet;
+    private List<GoalRoot> rootList = new ArrayList<>();
 }

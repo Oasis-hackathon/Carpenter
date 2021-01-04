@@ -3,6 +3,7 @@ package org.carpenter.domain.user;
 import lombok.*;
 import org.carpenter.domain.board.Board;
 import org.carpenter.domain.board.Comment;
+import org.carpenter.domain.common.Role;
 import org.carpenter.domain.common.RoleName;
 import org.carpenter.domain.goal.GoalRoot;
 import org.carpenter.domain.user.dto.UpdateDto;
@@ -11,9 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -35,16 +34,16 @@ public class Carpenter implements UserDetails {
     private LocalDateTime updatedTime;
 
     @OneToMany(mappedBy = "carpenter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Set<Role> roleSet;
+    private List<Role> roleList = new ArrayList<>();
 
     @OneToMany(mappedBy = "carpenter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Set<GoalRoot> rootSet;
+    private List<GoalRoot> rootList = new ArrayList<>();
 
     @OneToMany(mappedBy = "carpenter", cascade = CascadeType.PERSIST)
-    private Set<Board> boardSet;
+    private List<Board> boardList = new ArrayList<>();
 
     @OneToMany(mappedBy = "carpenter", cascade = CascadeType.PERSIST)
-    private Set<Comment> commentSet;
+    private List<Comment> commentList = new ArrayList<>();
 
     @Builder
     public Carpenter(String email, String password, String username, String nickname) {
@@ -58,7 +57,7 @@ public class Carpenter implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> result = new HashSet<>();
-        Role role = Role.builder().roleName(RoleName.CUSTOMER).build();
+        Role role = new Role(RoleName.CUSTOMER);
         result.add(role);
         return result;
     }

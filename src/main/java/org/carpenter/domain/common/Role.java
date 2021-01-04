@@ -1,15 +1,11 @@
-package org.carpenter.domain.user;
+package org.carpenter.domain.common;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.carpenter.domain.common.RoleName;
+import org.carpenter.domain.user.Carpenter;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
@@ -19,6 +15,8 @@ public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Enumerated(EnumType.STRING)
     private RoleName roleName;
 
     @ManyToOne
@@ -29,7 +27,6 @@ public class Role implements GrantedAuthority {
         return roleName.getRoleName();
     }
 
-    @Builder
     public Role(RoleName roleName) {
         this.roleName = roleName;
     }
