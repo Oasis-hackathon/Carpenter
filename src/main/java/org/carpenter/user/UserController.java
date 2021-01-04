@@ -1,7 +1,7 @@
 package org.carpenter.user;
 
 import org.carpenter.common.RoleName;
-import org.carpenter.user.dto.UserJoinDto;
+import org.carpenter.user.dto.CarpenterJoinDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,21 +15,25 @@ import java.util.List;
 public class UserController {
 
     @Resource
-    private UserService userService;
+    private CarpenterService carpenterService;
 
     @GetMapping("/join")
     public ModelAndView join(ModelAndView modelAndView) {
         List<RoleName> roleNameList = Arrays.asList(RoleName.values());
 
         modelAndView.addObject("roleNameList", roleNameList);
-        modelAndView.addObject("userJoinDto", new UserJoinDto());
         modelAndView.setViewName("user/join");
         return modelAndView;
     }
 
     @PostMapping("/signup")
-    public String signUp(UserJoinDto joinDto) {
-        userService.save(joinDto);
-        return "redirect:/user/login";
+    public String signUp(CarpenterJoinDto joinDto) {
+        carpenterService.save(joinDto);
+        return "redirect:/index";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "/user/login";
     }
 }

@@ -6,14 +6,22 @@
 </head>
 <body>
 <div>
-    <form action="/signup">
+    <form th:action="@{/signup}" method="post">
         <div>
-            <label>Email</label>
+            <label>이메일</label>
             <input type="email" name="email" placeholder="이메일을 입력하세요:)">
         </div>
         <div>
-            <label>Password</label>
+            <label>비밀번호</label>
             <input type="password" name="password" placeholder="비밀번호를 입력하세요:)">
+        </div>
+        <div>
+            <label>성명</label>
+            <input type="text" name="username" placeholder="성명을 입력하세요:)">
+        </div>
+        <div>
+            <label>닉네임</label>
+            <input type="text" name="nickname" placeholder="닉네임을 입력하세요:)">
         </div>
         <div>
             <label>Role</label>
@@ -22,7 +30,7 @@
             </select>
         </div>
         <input type="submit" value="가입하기">
-        <button type="button" formaction="/login" value="돌아가기"/>
+        <button type="button" formaction="/index" formmethod="get" th:text="돌아가기"></button>
     </form>
 </div>
 </body>

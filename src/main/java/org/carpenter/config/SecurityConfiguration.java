@@ -1,15 +1,17 @@
 package org.carpenter.config;
 
-import org.carpenter.user.UserService;
+import org.carpenter.user.CarpenterService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.Resource;
 
@@ -18,11 +20,24 @@ import javax.annotation.Resource;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Resource
-    private UserService userService;
+    private CarpenterService carpenterService;
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(carpenterService);
+        provider.setPasswordEncoder(passwordEncoder());
+        return provider;
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
     }
 
     //    보안 예외 처리 : 정적 리소스
@@ -34,11 +49,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     //    보안 처리
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/admin").hasRole("ADMIN").anyRequest().permitAll().and().formLogin().loginPage("/login").successForwardUrl("/index").failureUrl("/login").and().logout().logoutSuccessUrl("/login").invalidateHttpSession(true);
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+        http.authorizeRequests().antMatchers("/admin").hasRole("ADMIN").antMatchers("/index").authenticated()
+                .anyRequest().permitAll().and().formLogin().loginPage("/login").usernameParameter("email").defaultSuccessUrl("/index")
+                .and().logout().logoutSuccessUrl("/index").invalidateHttpSession(true).and().csrf();
     }
 }

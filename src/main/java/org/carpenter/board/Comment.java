@@ -1,7 +1,7 @@
 package org.carpenter.board;
 
 import lombok.Getter;
-import org.carpenter.user.User;
+import org.carpenter.user.Carpenter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,7 +20,7 @@ public class Comment {
     private LocalDateTime updatedTime;
 
     @ManyToOne
-    private User user;
+    private Carpenter carpenter;
 
     @ManyToOne
     private Board board;

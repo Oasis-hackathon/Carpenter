@@ -1,7 +1,7 @@
 package org.carpenter.board;
 
 import lombok.Getter;
-import org.carpenter.user.User;
+import org.carpenter.user.Carpenter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -20,7 +20,7 @@ public class Board {
     private LocalDateTime updatedTime;
 
     @ManyToOne
-    private User user;
+    private Carpenter carpenter;
 
     @OneToMany(mappedBy = "board", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Comment> commentSet;

@@ -2,7 +2,7 @@ package org.carpenter.goal;
 
 import lombok.Getter;
 import org.carpenter.common.Category;
-import org.carpenter.user.User;
+import org.carpenter.user.Carpenter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,7 +21,7 @@ public class GoalRoot {
     private LocalDate endDate;
 
     @ManyToOne
-    private User user;
+    private Carpenter carpenter;
 
     @ManyToOne
     private Category category;

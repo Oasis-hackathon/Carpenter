@@ -1,10 +1,11 @@
 package org.carpenter.user;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.carpenter.board.Board;
 import org.carpenter.board.Comment;
+import org.carpenter.common.RoleName;
 import org.carpenter.goal.GoalRoot;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,14 +14,13 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "user")
 @Entity
-public class User implements UserDetails {
+public class Carpenter implements UserDetails {
 
 //    TODO : Embedded Type 적용 고민하기
 
@@ -36,26 +36,31 @@ public class User implements UserDetails {
 
     private LocalDateTime updatedTime;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "carpenter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Role> roleSet;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "carpenter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<GoalRoot> rootSet;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "carpenter")
     private Set<Board> boardSet;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "carpenter")
     private Set<Comment> commentSet;
+
+    @Builder
+    public Carpenter(String email, String password, String username, String nickname) {
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.nickname = nickname;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> result = new HashSet<>();
-        Iterator iterator = roleSet.iterator();
-        while (iterator.hasNext()) {
-            Role role = (Role) iterator.next();
-            result.add(role);
-        }
+        Role role = Role.builder().roleName(RoleName.ADMIN).build();
+        result.add(role);
         return result;
     }
 
@@ -66,7 +71,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override
