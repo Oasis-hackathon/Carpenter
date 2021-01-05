@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout.html}">
+<head>
+    <title>Delete account</title>
+</head>
+<body>
+<div id = "content" layout:fragment="content">
+    <section>
+        <form th:action="@{/user/delete}" th:method="post">
+            <h1>회원 탈퇴하시겠습니까?</h1><br /><hr /><br />
+            <input type = "submit" name = "delete_acount_btn" value = "회원탈퇴">
+        </form>
+    </section>
+    <aside></aside>
+</div>
+<footer></footer>
+</body>
+</html>

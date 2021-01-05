@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout.html}">
+<head>
+    <title>Delete account</title>
+</head>
+<body>
+<div id = "content" layout:fragment="content">
+    <section>
+        <form th:action="@{/user/update}" th:method="post">
+            <div th:object="${updateDto}">
+                <div>
+                    <label>이메일</label>
+                    <input type="email" name="email" th:value="*{email}" readonly>
+                </div>
+                <div>
+                    <label>비밀번호</label>
+                    <input type="password" name="password">
+                </div>
+                <div>
+                    <label>성명</label>
+                    <input type="text" name="username" th:value="*{username}" readonly>
+                </div>
+                <div>
+                    <label>닉네임</label>
+                    <input type="text" name="nickname" th:value="*{nickname}">
+                </div>
+            </div>
+            <input type="submit" value="수정하기">
+        </form>
+    </section>
+    <aside></aside>
+</div>
+<footer></footer>
+</body>
+</html>

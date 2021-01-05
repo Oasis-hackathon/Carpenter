@@ -1,0 +1,10 @@
+
+#content {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#content > #main_section {
+    width: 750;
+    float: left;
+}

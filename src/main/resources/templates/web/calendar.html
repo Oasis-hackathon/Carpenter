@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout.html}">
+<head>
+    <title>Calendar : Improvement</title>
+    <link rel="stylesheet" href="/css/calendar.css">
+</head>
+<body>
+    <div id = "content" layout:fragment="content">
+        <section>
+            <div class = "calendar-main">
+                <div class = "content-wrap">
+                    <div class = "content-left">
+                        <div class = "main-wrap">
+                            <div id = "main-day" class = "main-day"></div>
+                            <div id = "main-date" class = "main-date"></div>
+                        </div>
+                        <div class = "todo-wrap">
+                            <div class = "todo-title">Todo List</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <aside></aside>
+    </div>
+    <footer></footer>
+</body>
+</html>

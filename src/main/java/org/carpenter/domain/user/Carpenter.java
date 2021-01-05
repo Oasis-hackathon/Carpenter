@@ -16,7 +16,6 @@ import java.util.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "user")
 @Entity
 public class Carpenter implements UserDetails {
 
@@ -46,12 +45,12 @@ public class Carpenter implements UserDetails {
     private List<Comment> commentList = new ArrayList<>();
 
     @Builder
-    public Carpenter(String email, String password, String username, String nickname) {
+    public Carpenter(String email, String password, String username, String nickname, LocalDateTime createdTime) {
         this.email = email;
         this.password = password;
         this.username = username;
         this.nickname = nickname;
-        this.createdTime = LocalDateTime.now();
+        this.createdTime = createdTime;
     }
 
     @Override

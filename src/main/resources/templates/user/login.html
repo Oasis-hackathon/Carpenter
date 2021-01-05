@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout.html}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login : Improvement</title>
+    <link rel="stylesheet" href="/css/signin.css">
 </head>
 <body>
-<form th:action="@{/login}" method="post">
-    <div>
-        <div>
-            <label>Email</label>
-            <input type="email" name="email" placeholder="이메일을 입력하세요:)">
-        </div>
-        <div>
-            <label>Password</label>
-            <input type="password" name="password" placeholder="비밀번호를 입력하세요:)">
-        </div>
+    <div id = "content" >
+        <section id = "main_section">
+            <h1>Login section</h1>
+            <form th:action="@{/login}" method="post">
+                <br /><hr /><br />
+                <label>Email</label>
+                <input type="email" name="email" placeholder="이메일을 입력하세요:)"><br /><br />
+                <label>Password</label>
+                <input type="password" name="password" placeholder="비밀번호를 입력하세요:)"><br /><br />
+                <input type="submit" value="로그인">
+                <button th:formaction="@{/join}" th:formmethod="get" th:text="회원가입"></button>
+            </form>
+        </section>
+        <aside></aside>
     </div>
-    <input type="submit" value="로그인">
-    <button th:formaction="@{/join}" th:formmethod="get" th:text="회원가입"></button>
-</form>
-<div>
-    <img src="/image/backgroundTree.jpeg" >
-</div>
+    <footer></footer>
 </body>
 </html>

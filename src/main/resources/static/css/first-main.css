@@ -1,0 +1,66 @@
+* {margin: 0; padding: 0;}
+body { font-family: sans-serif;}
+li {list-style: none;}
+a {text-decoration: none;}
+img {border: 0;}
+
+#main_header {
+    width: 1024px;
+    margin:0 auto;
+
+    height: 300px;
+    position:relative;
+}
+
+#main_header > #title {
+    position: absolute;
+    left: 40%; top: 40px;
+}
+
+#main_header > #main_gnb {
+    position: absolute;
+    right: 0; top: 0;
+}
+
+#main_header > #main_lnb {
+    position: absolute;
+    right: 35%; top: 150px;
+}
+
+#main_gnb > ul {overflow: hidden;}
+#main_gnb > ul > li { float: left;}
+#main_gnb > ul > li > a {
+    display: block;
+    padding: 2px 20px;
+    border: 0 solid black;
+}
+#main_gnb > ul > li > a:hover {
+    background:gray;
+    color:white;
+}
+#main_gnb > ul > li:first-child > a { border-radius: 10px 0 0 10px;}
+#main_gnb > ul > li:last-child > a { border-radius: 0 10px 10px 0;}
+
+#main_lnb > ul {overflow: hidden;}
+#main_lnb > ul > li { float: left;}
+#main_lnb > ul > li > a {
+    display: block;
+    padding: 10px 20px;
+    border: 0 solid black;
+}
+#main_lnb > ul > li > a:hover {
+    background:gray;
+    color:white;
+}
+#main_lnb > ul > li:first-child > a { border-radius: 10px 0 0 10px;}
+#main_lnb > ul > li:last-child > a { border-radius: 0 10px 10px 0;}
+
+#content {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#content > #main_section {
+    width: 750;
+    float: left;
+}

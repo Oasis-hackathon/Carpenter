@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMPROVEMENT</title>
+    <link rel="stylesheet" th:href="/css/first-main.css">
 </head>
 <body>
-
+<header id="main_header">
+    <div id="title">
+        <h1>IMPROVEMENT</h1>
+    </div>
+    <nav id="main_gnb">
+        <ul>
+            <li><a th:href="@{/index}" style="color: black">Home</a></li>
+            <li><a th:href="@{/about}" style="color: black">About</a></li>
+            <li><a th:href="@{/contact}" style="color: black">Contact</a></li>
+            <li><a th:href="@{/login}" style="color: black">Sign in</a></li>
+            <li><a th:href="@{/user/mypage}" style="color: black">Mypage</a>
+            </li>
+        </ul>
+    </nav>
+    <nav id="main_lnb">
+        <ul>
+            <li><a th:href="@{/user/calendar}" style="color: black">캘린더</a></li>
+            <li><a th:href="@{/goals/goal}" style="color: black">목표</a></li>
+            <li><a th:href="@{/community}" style="color: black">커뮤니티</a></li>
+        </ul>
+    </nav>
+</header>
+<div id = "content" layout:fragment="content">
+    <section></section>
+    <aside></aside>
+</div>
+<footer></footer>
 </body>
 </html>
