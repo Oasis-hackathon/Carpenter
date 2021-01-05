@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMPROVEMENT</title>
-    <link rel="stylesheet" th:href="/css/first-main.css">
+    <link rel="stylesheet" href="/css/first-main.css">
 </head>
 <body>
 <header id="main_header">
@@ -23,7 +23,7 @@
     </nav>
     <nav id="main_lnb">
         <ul>
-            <li><a th:href="@{/user/calendar}" style="color: black">캘린더</a></li>
+            <li><a th:href="@{/calendar}" style="color: black">캘린더</a></li>
             <li><a th:href="@{/goals/goal}" style="color: black">목표</a></li>
             <li><a th:href="@{/community}" style="color: black">커뮤니티</a></li>
         </ul>
@@ -34,5 +34,8 @@
     <aside></aside>
 </div>
 <footer></footer>
+<th:block layout:fragment="script">
+
+</th:block>
 </body>
 </html>

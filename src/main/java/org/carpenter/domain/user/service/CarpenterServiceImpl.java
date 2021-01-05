@@ -1,7 +1,9 @@
-package org.carpenter.domain.user;
+package org.carpenter.domain.user.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.carpenter.domain.user.Carpenter;
+import org.carpenter.domain.user.CarpenterRepository;
 import org.carpenter.domain.user.dto.JoinDto;
 import org.carpenter.domain.user.dto.UpdateDto;
 import org.carpenter.domain.user.mapper.CarpenterMapper;

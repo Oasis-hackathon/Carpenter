@@ -3,6 +3,7 @@ package org.carpenter.domain.user;
 import lombok.*;
 import org.carpenter.domain.board.Board;
 import org.carpenter.domain.board.Comment;
+import org.carpenter.domain.common.BaseEntity;
 import org.carpenter.domain.common.Role;
 import org.carpenter.domain.common.RoleName;
 import org.carpenter.domain.goal.GoalRoot;
@@ -17,7 +18,7 @@ import java.util.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Carpenter implements UserDetails {
+public class Carpenter extends BaseEntity implements UserDetails {
 
 //    TODO : Embedded Type 적용 고민하기
 
@@ -28,9 +29,6 @@ public class Carpenter implements UserDetails {
     private String password;
     private String username;
     private String nickname;
-
-    private LocalDateTime createdTime;
-    private LocalDateTime updatedTime;
 
     @OneToMany(mappedBy = "carpenter", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Role> roleList = new ArrayList<>();
@@ -45,12 +43,11 @@ public class Carpenter implements UserDetails {
     private List<Comment> commentList = new ArrayList<>();
 
     @Builder
-    public Carpenter(String email, String password, String username, String nickname, LocalDateTime createdTime) {
+    public Carpenter(String email, String password, String username, String nickname) {
         this.email = email;
         this.password = password;
         this.username = username;
         this.nickname = nickname;
-        this.createdTime = createdTime;
     }
 
     @Override
@@ -96,6 +93,5 @@ public class Carpenter implements UserDetails {
             this.password = dto.getPassword();
         }
         this.nickname = dto.getNickname();
-        this.updatedTime = LocalDateTime.now();
     }
 }

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.carpenter.domain.goal.dto.UpdateRootDto;
+import org.carpenter.domain.recommend.Recommend;
 import org.carpenter.domain.user.Carpenter;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class GoalRoot {
+public class GoalRoot implements Goal {
 
     @Id
     @GeneratedValue
@@ -34,6 +35,9 @@ public class GoalRoot {
 
     @OneToMany(mappedBy = "goalRoot", cascade = CascadeType.PERSIST)
     private List<GoalNode> goalNodeList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "goalRoot", cascade = CascadeType.PERSIST)
+    private List<Recommend> recommendList = new ArrayList<>();
 
     @Builder
     public GoalRoot(String title, String description, Boolean published, LocalDate startDate, LocalDate endDate, Carpenter carpenter, Category category) {

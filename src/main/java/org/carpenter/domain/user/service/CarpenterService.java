@@ -1,4 +1,4 @@
-package org.carpenter.domain.user;
+package org.carpenter.domain.user.service;
 
 import org.carpenter.domain.user.dto.JoinDto;
 import org.carpenter.domain.user.dto.UpdateDto;

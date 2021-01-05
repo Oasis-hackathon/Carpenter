@@ -1,7 +1,7 @@
 package org.carpenter.controller;
 
 import org.carpenter.domain.common.RoleName;
-import org.carpenter.domain.user.CarpenterService;
+import org.carpenter.domain.user.service.CarpenterService;
 import org.carpenter.domain.user.dto.JoinDto;
 import org.carpenter.domain.user.dto.UpdateDto;
 import org.springframework.stereotype.Controller;

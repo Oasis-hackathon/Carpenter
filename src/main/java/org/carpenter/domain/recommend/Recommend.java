@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.carpenter.domain.goal.GoalRoot;
 
 import javax.persistence.*;
 
@@ -21,10 +22,14 @@ public class Recommend {
     private String keyword;
     private String url;
 
+    @ManyToOne
+    private GoalRoot goalRoot;
+
     @Builder
-    public Recommend(RecommendType type, String keyword, String url) {
+    public Recommend(RecommendType type, String keyword, String url, GoalRoot goalRoot) {
         this.type = type;
         this. keyword = keyword;
         this.url = url;
+        this.goalRoot = goalRoot;
     }
 }

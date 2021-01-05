@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout.html}">
+<head>
+    <title>Calendar : Improvement</title>
+    <link rel="stylesheet" href="/css/calendar.css">
+    <link rel="stylesheet" href="/vendor/tuicalendar/tui-calendar.css">
+    <script th:src="@{/vendor/tuicalendar/tui-calendar.js}"></script>
+</head>
+<body>
+<div id="content" layout:fragment="content">
+    <section>
+        <div class="calendar-main">
+            <div id="calendar" style="height: 800px;"></div>
+            <div class="content-wrap">
+                <div class="content-left">
+                    <div class="main-wrap">
+                        <div id="main-day" class="main-day"></div>
+                        <div id="main-date" class="main-date"></div>
+                    </div>
+                    <div class="todo-wrap">
+                        <div class="todo-title">Todo List</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <aside></aside>
+</div>
+<footer></footer>
+<th:block layout:fragment="script">
+    <script>
+        var calendar = new Calendar(document.getElementById('calendar'), {
+            defaultView: 'month',
+            useCreationPopup: true,
+            useDetailPopup: true,
+        });
+    </script>
+</th:block>
+
+</body>
+</html>

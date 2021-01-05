@@ -13,24 +13,26 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.time.LocalDate;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @Transactional(propagation = Propagation.NOT_SUPPORTED)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DataJpaTest
-public class GoalTest {
+public class RepositoryTest {
 
     @Resource
     private CarpenterRepository carpenterRepository;
     @Resource
-    private CategoryRepository categoryRepository;
-    @Resource
     private GoalRootRepository rootRepository;
     @Resource
     private GoalNodeRepository nodeRepository;
+    @Resource
+    private CategoryRepository categoryRepository;
 
     @Test
     public void insertRoot() {
-        Carpenter carpenter = carpenterRepository.findByEmail("jeongyong95@gmail.com").get();
-        Category category = categoryRepository.save(Category.builder().title("운동").published(Boolean.TRUE).build());
+        Carpenter carpenter = carpenterRepository.getOne(1l);
+        Category category = categoryRepository.getOne(2l);
 
         PostRootDto rootDto = new PostRootDto();
         rootDto.setTitle("다이어트 하기!");
@@ -40,6 +42,6 @@ public class GoalTest {
         rootDto.setEndDate(LocalDate.now().plusMonths(1));
         rootDto.setCategory(category);
         GoalRoot root = rootDto.toEntity(carpenter);
-        rootRepository.save(root);
+        assertThat(rootRepository.save(root));
     }
 }

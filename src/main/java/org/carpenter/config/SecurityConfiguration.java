@@ -1,6 +1,6 @@
 package org.carpenter.config;
 
-import org.carpenter.domain.user.CarpenterService;
+import org.carpenter.domain.user.service.CarpenterService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,8 +49,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     //    보안 처리
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/admin").hasRole("ADMIN").antMatchers("/index").authenticated()
-                .anyRequest().permitAll().and().formLogin().loginPage("/login").usernameParameter("email").defaultSuccessUrl("/index")
+        http.authorizeRequests().antMatchers("/admin").hasRole("ADMIN").antMatchers("/user/**").hasRole("CUSTOMER")
+                .anyRequest().permitAll().and().formLogin().loginPage("/login").usernameParameter("email").defaultSuccessUrl("/index").failureUrl("/login?result=fail")
                 .and().logout().logoutSuccessUrl("/index").invalidateHttpSession(true).and().csrf();
     }
 }

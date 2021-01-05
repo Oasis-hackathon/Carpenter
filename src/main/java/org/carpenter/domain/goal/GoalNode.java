@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class GoalNode {
+public class GoalNode implements Goal {
     @Id
     @GeneratedValue
     private Long id;
