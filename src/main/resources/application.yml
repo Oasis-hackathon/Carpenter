@@ -1,0 +1,24 @@
+server:
+  port: 8081
+
+videoUrl: https://www.youtube.com/results?search_query=
+productUrl: https://www.coupang.com/np/search?component=&q=
+
+spring:
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/carpenter?serverTimezone=UTC
+    username: root
+    password:
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    open-in-view: false
+    show-sql: true
+    hibernate:
+      format_sql: true
+      ddl-auto: create
+
+  thymeleaf:
+    cache: false
