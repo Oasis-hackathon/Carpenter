@@ -15,8 +15,9 @@ public class PostRootDto {
     private LocalDate startDate;
     private LocalDate endDate;
     private Category category;
+    private Carpenter carpenter;
 
-    public GoalRoot toEntity(Carpenter carpenter) {
+    public GoalRoot toEntity() {
         return GoalRoot.builder().title(title).description(description).published(published).startDate(startDate).endDate(endDate).category(category).carpenter(carpenter).build();
     }
 }
