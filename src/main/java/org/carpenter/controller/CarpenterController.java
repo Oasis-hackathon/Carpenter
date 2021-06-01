@@ -7,6 +7,7 @@ import org.carpenter.domain.user.dto.UpdateDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -14,42 +15,20 @@ import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
 
+@RequestMapping("/user")
 @Controller
 public class CarpenterController {
 
     @Resource
     private CarpenterService carpenterService;
 
-    @GetMapping("/join")
-    public ModelAndView join(ModelAndView modelAndView) {
-        List<RoleName> roleNameList = Arrays.asList(RoleName.values());
-
-        modelAndView.addObject("roleNameList", roleNameList);
-        modelAndView.setViewName("user/join");
-        return modelAndView;
-    }
-
-    @PostMapping("/signup")
-    public String signUp(JoinDto joinDto) {
-        carpenterService.save(joinDto);
-        return "redirect:/index";
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "user/login";
-    }
-
-    @GetMapping("/user/mypage")
-    public ModelAndView mypage(ModelAndView modelAndView, Principal principal) {
-        String email = principal.getName();
-        UpdateDto dto = carpenterService.getCarpenter(email);
-        modelAndView.addObject("updateDto",dto);
+    @GetMapping("/mypage")
+    public ModelAndView mypage(ModelAndView modelAndView) {
         modelAndView.setViewName("user/mypage");
         return modelAndView;
     }
 
-    @PostMapping ("/user/update")
+    @PostMapping ("/update")
     public ModelAndView update(ModelAndView modelAndView, UpdateDto dto) {
         UpdateDto updatedDto = carpenterService.update(dto);
         modelAndView.addObject("updateDto", updatedDto);
@@ -57,9 +36,24 @@ public class CarpenterController {
         return modelAndView;
     }
 
-    @PostMapping("/user/delete")
+    @PostMapping("/delete")
     public String delete(UpdateDto dto) {
         carpenterService.delete(dto);
         return "redirect:/login";
+    }
+
+    @GetMapping("/my-goal-list")
+    public ModelAndView getMyList(ModelAndView modelAndView) {
+        modelAndView.setViewName("/goal/list");
+        return modelAndView;
+    }
+
+    @GetMapping("/edit-profile")
+    public ModelAndView getEditProfilePage(ModelAndView modelAndView, Principal principal) {
+        String email = principal.getName();
+        UpdateDto dto = carpenterService.getCarpenter(email);
+        modelAndView.addObject("updateDto",dto);
+        modelAndView.setViewName("/user/edit-profile");
+        return modelAndView;
     }
 }

@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     //    보안 처리
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/admin").hasRole("ADMIN").antMatchers("/user/**").hasRole("CUSTOMER")
+        http.authorizeRequests().antMatchers("/admin").hasRole("ADMIN").antMatchers("/user/**").authenticated()
                 .anyRequest().permitAll().and().formLogin().loginPage("/login").usernameParameter("email").defaultSuccessUrl("/index").failureUrl("/login?result=fail")
                 .and().logout().logoutSuccessUrl("/index").invalidateHttpSession(true).and().csrf();
     }
