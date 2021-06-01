@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/layout/layout.html}">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout.html}">
 <!--목표 리스트, 정보 수정 페이지 작성 안됨, 마이페이지 리스트는 로그인 성공 이후 signin대신 뜨도록 함-->
-    <div id = "content" layout:fragment="content">
-        <section>
-            <h1>마이 페이지</h1><br /><hr /><br />
-            <ul>
-                <li><a href = "" style = "color: black">목표 리스트</a></li><br />
-                <li><a href = "" style = "color: black">개인정보 수정</a></li><br />
-                <li><a href = "" style = "color: black">비밀번호 변경</a></li><br />
-                <li><a href = "" style = "color: black">회원 탈퇴</a></li><br />
-            </ul>
-        </section>
-        <aside></aside>
-    </div>
-    <footer></footer>
+<div id="content" layout:fragment="content">
+    <section>
+        <h1>마이 페이지</h1><br/>
+        <hr/>
+        <br/>
+        <ul>
+            <li><a th:href="@{my-goal-list}" style="color: black">목표 리스트</a></li>
+            <br/>
+            <li><a th:href="@{edit-profile}" style="color: black">개인정보 수정</a></li>
+            <br/>
+            <li><a href="" style="color: black">비밀번호 변경</a></li>
+            <br/>
+            <li><a href="" style="color: black">회원 탈퇴</a></li>
+            <br/>
+        </ul>
+    </section>
+    <aside></aside>
+</div>
+<footer></footer>
 </body>
 </html>

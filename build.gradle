@@ -29,7 +29,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     implementation 'com.github.shin285:KOMORAN:3.3.9'
-    compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.5.2'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 
 
     implementation "org.mapstruct:mapstruct:1.4.1.Final"

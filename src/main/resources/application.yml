@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 80
 
 videoUrl: https://www.youtube.com/results?search_query=
 productUrl: https://www.coupang.com/np/search?component=&q=
@@ -8,7 +8,7 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost/carpenter?serverTimezone=UTC
+    url: jdbc:mysql://localhost/improvement?serverTimezone=UTC
     username: root
     password:
 
@@ -18,7 +18,7 @@ spring:
     show-sql: true
     hibernate:
       format_sql: true
-      ddl-auto: create
+      ddl-auto: update
 
   thymeleaf:
     cache: false
